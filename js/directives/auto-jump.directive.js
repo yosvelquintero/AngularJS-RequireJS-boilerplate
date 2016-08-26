@@ -15,19 +15,20 @@ define(['./module'], function(directives) {
               .find('input');
             
             angular.forEach(inputs, function(el) {
-              if ((tabindex + 1) == +el.getAttribute('tabindex')) {
+              if ((tabindex + 1) === +el.getAttribute('tabindex')) {
                 next = el;
               }
             });
             
             if (next) {
               next.focus();
-              return next.triggerHandler('keypress', {
+              return next.triggerHandler({
+                type: 'keypress',
                 which: e.which
               });
-            } else {
-              return false;              
-            }            
+            } 
+
+            return false;
           }
 
           return true;
