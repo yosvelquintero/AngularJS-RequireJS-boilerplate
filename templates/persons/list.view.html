@@ -1,0 +1,44 @@
+<h3>List</h3>
+
+<div data-ng-if="vm.personsAll.length">
+  <form>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="byName">Filter by name</label>
+        <input type="text" class="form-control" name="byName" id="byName" data-ng-model="byName" placeholder="Filter by name..." autocomplete="off" />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="byBalance">Filter by balance</label>
+        <input type="text" class="form-control" name="byBalance" id="byBalance" data-ng-model="byBalance" placeholder="Filter by balance..." autocomplete="off" />
+      </div>
+    </div>
+  </form>
+
+  <table class="table">
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Balance</th>
+      <th class="hidden-xs">About</th>
+      <th class="delete-column"></th>
+    </tr>
+    <tr data-ng-repeat="p in vm.personsAll | filter: {name: byName, balance: byBalance} track by p.id">
+      <td>{{p.id}}</td>
+      <td>
+        <a data-ui-sref="persons.details({id: p.id, slug: p.slug})" data-ui-sref-active="active">
+          {{p.name}}
+        </a>
+        <td>{{p.balance | currency}}</td>
+      </td>
+      <td class="hidden-xs">{{p.about | words:20}}</td>
+      <td><a class="btn btn-xs btn-danger" data-ng-click="vm.destroy(p.id)">Delete</a></td>
+    </tr>
+  </table>
+</div>
+
+<div data-ng-if="!vm.personsAll.length">
+  <p>There is no persons available.</p>
+  <p>You can <a data-ui-sref="persons.add" >create a new persons</a>.</p>
+</div>

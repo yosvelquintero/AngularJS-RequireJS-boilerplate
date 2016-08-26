@@ -1,0 +1,48 @@
+<h3>+ Add</h3>
+
+<form name="form" data-ng-submit="vm.submit(form)" novalidate>
+  <div class="form-group" show-errors>
+    <label for="name">Name</label>
+    <input type="text" class="form-control" name="name" id="name" data-ng-model="vm.person.name" placeholder="Name" required>
+    <div data-ng-messages="form.name.$error" data-ng-if="vm.submitted" role="alert">
+      <p class="help-block error-text" data-ng-message="required">This field is required</p>
+    </div>
+  </div>
+  <div class="form-group" show-errors>
+    <label for="balance">Balance</label>
+    <input type="text" class="form-control" name="balance" id="balance" data-ng-model="vm.person.balance" input-currency placeholder="Balance" required>
+    <div data-ng-messages="form.balance.$error" data-ng-if="vm.submitted" role="alert">
+      <p class="help-block error-text" data-ng-message="required">This field is required</p>
+    </div>
+  </div>
+  <div class="form-group" show-errors>
+    <label for="email">Email</label>
+    <input type="email" class="form-control" name="email" id="email" data-ng-model="vm.person.email" placeholder="Email" required>
+    <div data-ng-messages="form.email.$error" data-ng-if="vm.submitted" role="alert">
+      <p class="help-block error-text" data-ng-message="email">This field should be a valid email</p>
+      <p class="help-block error-text" data-ng-message="required">This field is required</p>
+    </div>
+  </div>
+  <div class="form-group" show-errors>
+    <label for="phone">Phone</label>
+    <input type="text" class="form-control" name="phone" id="phone" data-ng-model="vm.person.phone" input-phone placeholder="Phone" required>
+    <div data-ng-messages="form.phone.$error" data-ng-if="vm.submitted" role="alert">
+      <p class="help-block error-text" data-ng-message="required">This field is required</p>
+    </div>
+  </div>
+  <div class="form-group" show-errors>
+    <label for="address">Address</label>
+    <input type="text" class="form-control" name="address" id="address" data-ng-model="vm.person.address" placeholder="Address" required>
+    <div data-ng-messages="form.address.$error" data-ng-if="vm.submitted" role="alert">
+      <p class="help-block error-text" data-ng-message="required">This field is required</p>
+    </div>
+  </div>
+  <div class="form-group" show-errors>
+    <label for="about">About</label>
+    <textarea class="form-control" name="about" id="about" rows="3" data-ng-model="vm.person.about" placeholder="About" required></textarea>
+    <div data-ng-messages="form.about.$error" data-ng-if="vm.submitted" role="alert">
+      <p class="help-block error-text" data-ng-message="required">This field is required</p>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
