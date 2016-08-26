@@ -55,9 +55,7 @@ define(['./app'], function(app) {
         })
         .state('autoJump', {
           url: '/auto-jump',
-          templateUrl: 'templates/auto-jump/index.view.html',
-          controller: 'AutoJumpController',
-          controllerAs: 'vm'
+          templateUrl: 'templates/auto-jump/index.view.html'
         })
         .state('not-found', {
           templateUrl: 'templates/errors/not-found.view.html'

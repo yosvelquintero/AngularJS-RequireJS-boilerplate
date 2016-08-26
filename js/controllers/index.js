@@ -5,6 +5,5 @@ define([
   './person.generate-demo-data.controller',
   './person.list.controller',
   './person.details.controller',
-  './four-inputs.controller',
-  './auto-jump.controller'
+  './four-inputs.controller'
 ], function() {});
