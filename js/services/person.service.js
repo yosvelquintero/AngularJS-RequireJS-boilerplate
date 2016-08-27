@@ -43,7 +43,6 @@ define(['./module'], function(services) {
 
       /**
        * Generate persons demo data
-       *
        * @returns {Void} Redirection to "persons.list" state
        */
       function generateDemoData() {

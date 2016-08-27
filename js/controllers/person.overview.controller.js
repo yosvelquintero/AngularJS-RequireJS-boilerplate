@@ -3,7 +3,7 @@ define(['./module'], function(controllers) {
 
   controllers.controller('PersonOverviewController', [function() {
     var vm = this;
-    
+
     vm.dateToday = new Date();
   }]);
 });

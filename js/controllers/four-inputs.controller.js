@@ -9,14 +9,14 @@ define(['./module'], function(controllers) {
     vm.numberThree = 0;
     vm.numberFour = 0;
 
-    vm.onChangeOneOfThree = function () {
+    vm.onChangeOneOfThree = function() {
       vm.numberFour = vm.numberOne + vm.numberTwo + vm.numberThree;
     };
 
-    vm.onChangeTheFourth = function () {
-      var half =  vm.numberFour / 2;
+    vm.onChangeTheFourth = function() {
+      var half = vm.numberFour / 2;
       var halfHalf = half / 2;
-      
+
       vm.numberOne = half;
       vm.numberTwo = halfHalf;
       vm.numberThree = halfHalf;

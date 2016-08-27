@@ -18,7 +18,7 @@ define(['./module'], function(controllers) {
 
         var newPerson = angular.copy(vm.person);
         PersonService.save(newPerson);
-        
+
         $state.go('persons.list');
       };
     }
