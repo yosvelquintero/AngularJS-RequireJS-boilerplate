@@ -139,7 +139,7 @@ define(['./module'], function(services) {
           return {
             name: p.name,
             email: p.email,
-            phone: p.phone.replace('+1 ', ''),
+            phone: p.phone,
             address: p.address,
             balance: +p.balanceNumber,
             about: p.about
