@@ -1,13 +1,15 @@
-## AngularJS + RequireJS project
+# AngularJS + RequireJS project
 
 This is a boilerplate project with the usage of AngularJS and RequireJS
 
-### Install dependencies
+## Install dependencies
+
 In order to install all dependencies execute in the command line:
 
 `$ npm install`
 
-### Usage
+## Usage
+
 Also from command line run the command:
 
 `$ gulp`

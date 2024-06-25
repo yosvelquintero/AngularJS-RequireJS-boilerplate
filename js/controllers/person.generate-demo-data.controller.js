@@ -1,13 +1,14 @@
-define(['./module'], function(controllers) {
+define(['./module'], function (controllers) {
   'use strict';
 
-  controllers.controller('PersonGenerateDemoDataController', ['PersonService',
-    function(PersonService) {
-      var vm = this;
+  controllers.controller('PersonGenerateDemoDataController', [
+    'PersonService',
+    function (PersonService) {
+      const vm = this;
 
-      vm.generateDemoData = function() {
+      vm.generateDemoData = function () {
         return PersonService.generateDemoData();
       };
-    }
+    },
   ]);
 });

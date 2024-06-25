@@ -1,12 +1,10 @@
 <h3>{{vm.person.name}} <small>{{vm.person.balance | currency}}</small></h3>
 
 <div class="person-descrition">
+  <p>{{vm.person.about}}</p>
   <p>
-    {{vm.person.about}}
-  </p>
-  <p>
-    <abbr title="Address">A:</abbr> {{vm.person.address}}<br>
-    <abbr title="Phone">P:</abbr> {{vm.person.phone | tel}}<br>
+    <abbr title="Address">A:</abbr> {{vm.person.address}}<br />
+    <abbr title="Phone">P:</abbr> {{vm.person.phone | tel}}<br />
     <abbr title="Email">E:</abbr> <a href="mailto:#{{vm.person.email}}">{{vm.person.email}}</a>
   </p>
 </div>

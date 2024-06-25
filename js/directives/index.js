@@ -3,5 +3,5 @@ define([
   './input-currency.directive',
   './input-phone.directive',
   './auto-jump.directive',
-  './show-errors.directive'
-], function() {});
+  './show-errors.directive',
+], function () {});
