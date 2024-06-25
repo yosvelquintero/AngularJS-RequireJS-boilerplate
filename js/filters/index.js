@@ -1,5 +1,1 @@
-define([
-  './interpolate.filter',
-  './words.filter',
-  './tel.filter'
-], function() {});
+define(['./interpolate.filter', './words.filter', './tel.filter'], function () {});

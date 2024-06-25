@@ -7,8 +7,8 @@ define([
   './controllers/index',
   './directives/index',
   './filters/index',
-  './services/index'
-], function(angular) {
+  './services/index',
+], function (angular) {
   'use strict';
 
   return angular.module('app', [
@@ -19,6 +19,6 @@ define([
     'app.controllers',
     'app.directives',
     'app.filters',
-    'app.services'
+    'app.services',
   ]);
 });

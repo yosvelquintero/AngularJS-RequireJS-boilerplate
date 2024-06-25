@@ -1,4 +1,1 @@
-define([
-  './version.service',
-  './person.service'
-], function() {});
+define(['./version.service', './person.service'], function () {});

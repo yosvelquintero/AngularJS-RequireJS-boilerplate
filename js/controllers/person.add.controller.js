@@ -1,14 +1,17 @@
-define(['./module'], function(controllers) {
+define(['./module'], function (controllers) {
   'use strict';
 
-  controllers.controller('PersonAddController', ['$scope', '$state', 'PersonService',
-    function($scope, $state, PersonService) {
-      var vm = this;
+  controllers.controller('PersonAddController', [
+    '$scope',
+    '$state',
+    'PersonService',
+    function ($scope, $state, PersonService) {
+      const vm = this;
 
       vm.person = {};
       vm.submitted = false;
 
-      vm.submit = function(form) {
+      vm.submit = function (form) {
         vm.submitted = true;
 
         if (!form.$valid) {
@@ -16,11 +19,11 @@ define(['./module'], function(controllers) {
           return false;
         }
 
-        var newPerson = angular.copy(vm.person);
+        const newPerson = angular.copy(vm.person);
         PersonService.save(newPerson);
 
         $state.go('persons.list');
       };
-    }
+    },
   ]);
 });
