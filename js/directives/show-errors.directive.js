@@ -1,3 +1,43 @@
+const showValidationMessages = false;
+
+const toggleClasses = function (invalid) {
+  elem.toggleClass('has-error', showValidationMessages && invalid);
+  if (showSuccess) {
+    elem.toggleClass('has-success', showValidationMessages && !invalid);
+  }
+};
+
+const reset = function () {
+  return $timeout(
+    function () {
+      elem.removeClass('has-error');
+      elem.removeClass('has-success');
+      showValidationMessages = false;
+    },
+    0,
+    false
+  );
+};
+
+const watchForm = function (formControler) {
+  scope.$watch(function () {
+    return formControler[inputName] && formControler[inputName].$invalid;
+  }, toggleClasses);
+};
+
+const handleCheckValidity = function (event, name) {
+  if (angular.isUndefined(name) || formControler.$name === name) {
+    showValidationMessages = true;
+    toggleClasses(formControler[inputName].$invalid);
+  }
+};
+
+const handleReset = function (event, name) {
+  if (angular.isUndefined(name) || formControler.$name === name) {
+    reset();
+  }
+};
+
 define(['./module'], function (directives) {
   'use strict';
 
@@ -5,76 +45,31 @@ define(['./module'], function (directives) {
     '$timeout',
     '$interpolate',
     function ($timeout, $interpolate) {
-      const linkFn = function (scope, el, attrs, formControler) {
-        const initCheck = false,
-          showValidationMessages = false;
-        let inputEl, inputName, inputNgEl, showSuccess, toggleClasses;
-        // blurred = true;
-        options = scope.$eval(attrs.showErrors) || {};
-
-        showSuccess = options.showSuccess || false;
-        inputEl = el[0].querySelector('.form-control[name]') || el[0].querySelector('[name]');
-        inputNgEl = angular.element(inputEl);
-        inputName = $interpolate(inputNgEl.attr('name') || '')(scope);
-
-        if (!inputName) {
-          throw "show-errors element has no child input elements with a 'name' attribute class";
-        }
-
-        const reset = function () {
-          return $timeout(
-            function () {
-              el.removeClass('has-error');
-              el.removeClass('has-success');
-              showValidationMessages = false;
-            },
-            0,
-            false
-          );
-        };
-
-        scope.$watch(
-          function () {
-            return formControler[inputName] && formControler[inputName].$invalid;
-          },
-          function (invalid) {
-            return toggleClasses(invalid);
-          }
-        );
-
-        scope.$on('show-errors-check-validity', function (event, name) {
-          if (angular.isUndefined(name) || formControler.$name === name) {
-            initCheck = true;
-            showValidationMessages = true;
-
-            return toggleClasses(formControler[inputName].$invalid);
-          }
-        });
-
-        scope.$on('show-errors-reset', function (event, name) {
-          if (angular.isUndefined(name) || formControler.$name === name) {
-            return reset();
-          }
-        });
-
-        toggleClasses = function (invalid) {
-          el.toggleClass('has-error', showValidationMessages && invalid);
-          if (showSuccess) {
-            return el.toggleClass('has-success', showValidationMessages && !invalid);
-          }
-        };
-      };
-
       return {
         restrict: 'A',
         require: '^form',
         compile: function (elem, attrs) {
+          const options = scope.$eval(attrs.showErrors) || {};
+          const inputEl = elem[0].querySelector('.form-control[name]') || elem[0].querySelector('[name]');
+          const inputNgEl = angular.element(inputEl);
+          const inputName = $interpolate(inputNgEl.attr('name') || '')(scope);
+
+          if (!inputName) {
+            throw "show-errors element has no child input elements with a 'name' class";
+          }
+
           if (attrs.showErrors.indexOf('skipFormGroupCheck') === -1) {
             if (!(elem.hasClass('form-group') || elem.hasClass('input-group'))) {
               throw "show-errors element does not have the 'form-group' or 'input-group' class";
             }
           }
-          return linkFn;
+
+          return function linkFn(scope, elem, attrs, formControler) {
+            watchForm(formControler);
+
+            scope.$on('show-errors-check-validity', handleCheckValidity);
+            scope.$on('show-errors-reset', handleReset);
+          };
         },
       };
     },
